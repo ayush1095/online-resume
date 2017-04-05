@@ -24,17 +24,75 @@ var bio = {
 	},
 	"welcomeMsg":"Helllllooooooo",
 	"skills":[
-	"HTML","CSS","javaScript"],
+	"HTML","CSS","JavaScript", "Node.js", "Python"],
 	"bioPic":"images/me.jpg"
-}
+};
 
+ $("#header").prepend(HTMLheaderRole.replace("%data%",bio.role));
  $("#header").prepend(HTMLheaderName.replace("%data%",bio.name));
- $("#header").append(HTMLheaderRole.replace("%data%",bio.role));
+ $("#header").append(HTMLbioPic.replace("%data%",bio.bioPic));
 
-$("#header").append(HTMLmobile.replace("%data%",bio.contact.mobile));
-$("#header").append(HTMLemail.replace("%data%",bio.contact.email));
-$("#header").append(HTMLgithub.replace("%data%",bio.contact.github));
-$("#header").append(HTMLtwitter.replace("%data%",bio.contact.twitter));
-$("#header").append(HTMLlocation.replace("%data%",bio.contact.location));
-$("#header").prepend(HTMLbioPic.replace("%data%",bio.bioPic));
-$("#header").append(HTMLskills.replace("%data%",bio.skills));
+
+
+
+$("#footerContacts").append(HTMLtwitter.replace("%data%",bio.contact.twitter));
+$("#footerContacts").append(HTMLlocation.replace("%data%",bio.contact.location));
+$("#topContacts").append(HTMLmobile.replace("%data%",bio.contact.mobile));
+$("#topContacts").append(HTMLemail.replace("%data%",bio.contact.email));
+$("#topContacts").append(HTMLgithub.replace("%data%",bio.contact.github));
+  
+
+  if(bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+
+	for(i in bio.skills) {
+		$("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+	}
+}
+var work = {
+	
+
+	"title":"code reviewer",
+	"employer": "udacity",
+	"datesWorked": "4 months",
+	"location": "remote",
+	"description":"Review projects submitted by students enrolled in Self-Driving Car NanoDegree."
+};
+
+
+
+var education={
+    
+    schoolName:"DAV Public School, Hehal",
+    degree:"10th and 12th",
+    location:"Ranchi, Jharkhand"
+};
+
+
+$("#workExperience").append(HTMLworkEmployer.replace("%data%",work.employer));
+$("#workExperience").append(HTMLworkTitle.replace("%data%",work.position));
+$("#workExperience").append(HTMLworkDates.replace("%data%",work.experience));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
