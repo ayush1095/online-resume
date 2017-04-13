@@ -5,13 +5,48 @@ var bio = {
         "email": "ayush.ayush.kr@gmail.com",
         "github": "Ayush1095",
         "twitter": "@AyushKumar1095",
-        "location": "Dehradun, Uttarakhand, India"
+        "location": "Ranchi, jharkhand",
+        "mobile":"7060753767"
     },
-    "picture": "images/me.jpg",
+    "bioPic": "images/me.jpg",
     "welcomeMessage": "I'm currently persuing B.Tech from University of petroleum and energy studies, Dehradun. I am looking for Internship. "+
               "I love web",
-    "skills": ["JavaScript", "HTML", "python", "Software Development", "C and C++"]
+    "skills": ["JavaScript", "HTML", "python", "Software Development", "C and C++"],
+
+    "display":function(){
+                var formattedName = HTMLheaderName.replace("%data%", bio.name);
+                var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+                var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+                var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+
+                var formattedContactInfo = [];
+                formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
+                formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
+                formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+                formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
+                formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
+
+
+                $("#header").prepend(formattedRole);
+                $("#header").prepend(formattedName);
+                $("#header").append(formattedBioPic);
+                $("#header").append(formattedWelcomeMsg);
+
+                if(bio.skills.length > 0) {
+                    $("#header").append(HTMLskillsStart);
+
+                    for(i in bio.skills) {
+                        $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+                    }
+                }
+
+                for(var i=0;i<formattedContactInfo.length;i++) {
+                    $("#topContacts").append(formattedContactInfo[i]);
+                    $("#footerContacts").append(formattedContactInfo[i]);
+                }
+}
 };
+bio.display();
 
 var work = {
     "jobs": [
@@ -23,48 +58,31 @@ var work = {
             "description":"Review projects submitted by students enrolled in Self-Driving Car NanoDegree. It requires knowledge of Python, Machine Learning Algorithms and OpenCV."
 
         }
-    ]
-};
-
-var education = {
-    "schools": [
-        { "name": "University of Petroleum and energy studies",
-            "datesAttended": "2014 - 2018",
-            "location": "Dehradun, uttarakhand, India",
-            "degree": "B.Tech in Computer Science with specialization in Open source and Open standards",
-            "major": "Decaf Compiler",
-            "minor": "Traveling salesman problem using Ant colony Optimization",
-            "url": "www.upes.ac.in"
-        }
     ],
-   "onlineCourses": [
-        { "school": "Udacity",
-            "title": "Front-End Web Developer NanoDegree",
-            "completed": "Ongoing",
-            "url": "https://www.udacity.com/course/ud015"
-        },
-        { "school": "Udacity",
-            "title": "HTML5 Canvas",
-            "completed": "Ongoing",
-            "url": "https://www.udacity.com/course/ud292"
-        },
-        { "school": "Udacity",
-            "title": "Javascript Basics",
-            "completed": "March 2017",
-            "url": "https://www.udacity.com/course/ud804"
-        },
-        { "school": "Udacity",
-            "title": "Intro to HTML and CSS",
-            "completed": "November 2016",
-            "url": "https://www.udacity.com/course/ud304"
-        },
-        { "school": "Udacity",
-            "title": "Web Development",
-            "completed": "September 2016",
-            "url": "https://www.udacity.com/course/cs253"
-        }
-    ]
+
+    "display": function() {
+        // body..
+        if(work.jobs.length>0){
+          $("#workExperience").append(HTMLworkStart);
+
+        for(var i=0;i<work.jobs.length;i++){
+            var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+            var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+            var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+            var formattedDatesWorked = HTMLworkDates.replace("%data%", work.jobs[i].datesWorked);
+            var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+            var formattedEmployerWorkTitle = formattedEmployer + formattedWorkTitle;
+
+            $(".work-entry:last").append(formattedEmployerWorkTitle);
+            $(".work-entry:last").append(formattedWorkLocation);
+            $(".work-entry:last").append(formattedDatesWorked);
+            $(".work-entry:last").append(formattedWorkDescription);
+    }
+}
+}
 };
+work.display();
 
 
 var projects = {
@@ -96,44 +114,14 @@ var projects = {
 };
 
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.picture);
-var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-var formattedContactInfo = [];
-formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
-formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
-formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
-
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcomeMsg);
-
-if(bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-
-    for(i in bio.skills) {
-        $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
-    }
-}
-
-for(i in formattedContactInfo) {
-    $("#topContacts").append(formattedContactInfo[i]);
-    $("#footerContacts").append(formattedContactInfo[i]);
-}
-
-
+/*
 function displayWork() {
 
     if(work.jobs.length > 0) {
 
         $("#workExperience").append(HTMLworkStart);
 
-        for(i in work.jobs) {
+        for(var i=0;i<work.jobs.length;i++) {
             var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
             var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
             var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
@@ -153,6 +141,7 @@ function displayWork() {
 }
 
 displayWork();
+*/
 
 
 projects.display = function() {
@@ -179,7 +168,7 @@ projects.display = function() {
 }
 
 projects.display();
-
+/*
 education.display = function() {
     if(education.schools.length > 0 || education.onlineCourses.length > 0) {
         for(i in education.schools) {
@@ -218,11 +207,92 @@ education.display = function() {
 }
 
 education.display();
-
+*/
 /**
  * Skills Chart
  */
 
-//$("#mapDiv").append(googleMap);
+ var education = {
+    "schools": [
+        { "name": "University of Petroleum and energy studies",
+            "datesAttended": "2014 - 2018",
+            "location": "Dehradun, uttarakhand, India",
+            "degree": "B.Tech in Computer Science with specialization in Open source and Open standards",
+            "major": "Decaf Compiler",
+            "minor": "Traveling salesman problem using Ant colony Optimization",
+            "url": "www.upes.ac.in"
+        }
+    ],
+   "onlineCourses": [
+        { "school": "Udacity",
+            "title": "Front-End Web Developer NanoDegree",
+            "completed": "Ongoing",
+            "url": "https://www.udacity.com/course/ud015"
+        },
+        { "school": "Udacity",
+            "title": "HTML5 Canvas",
+            "completed": "Ongoing",
+            "url": "https://www.udacity.com/course/ud292"
+        },
+        { "school": "Udacity",
+            "title": "Javascript Basics",
+            "completed": "March 2017",
+            "url": "https://www.udacity.com/course/ud804"
+        },
+        { "school": "Udacity",
+            "title": "Intro to HTML and CSS",
+            "completed": "November 2016",
+            "url": "https://www.udacity.com/course/ud304"
+        }],
+
+    "display": function() {
+
+        // SCHOOL EDUCATION
+
+        $.each(education.schools, function(edu) {
+
+            $('#education').append(HTMLschoolStart); // this appends SCHOOL EDUCATION to #education header
+
+            var educations = education.schools;
+
+            var myName = HTMLschoolName.replace('%data%', educations[edu].name).replace("#", educations[edu].url);
+            var myDegree = HTMLschoolDegree.replace('%data%', educations[edu].degree);
+            $('.education-entry:last').append(myName + myDegree);
+
+            var myDates = HTMLschoolDates.replace('%data%', educations[edu].dates);
+            $('.education-entry:last').append(myDates);
+
+            var myLocation = HTMLschoolLocation.replace('%data%', educations[edu].location);
+            $('.education-entry:last').append(myLocation);
+
+            var myMajors = HTMLschoolMajor.replace('%data%', educations[edu].majors);
+            $('.education-entry:last').append(myMajors);
+        });
+
+        // ONLINE COURSES
+
+        $('#education').append(HTMLonlineClasses); // this appends ONLINE EDUCATION to #education header
+
+        $.each(education.onlineCourses, function(edu) {
+            $('#education').append(HTMLschoolStart);
+
+            var onlineEd = education.onlineCourses;
+
+            var myTitle = HTMLonlineTitle.replace('%data%', onlineEd[edu].title);
+            var mySchool = HTMLonlineSchool.replace('%data%', onlineEd[edu].school);
+            $('.education-entry:last').append(myTitle + mySchool);
+
+            var myDates = HTMLonlineDates.replace('%data%', onlineEd[edu].dates);
+            $('.education-entry:last').append(myDates);
+
+            var myUrl = HTMLonlineURL.replace("#", onlineEd[edu].url).replace('%data%', onlineEd[edu].url);
+            $('.education-entry:last').append(myUrl);
+
+        });
+    }
+};
+education.display(); // DISPLAYING EDUCATION ON PAGE
+
+$("#mapDiv").append(googleMap);
 
 
