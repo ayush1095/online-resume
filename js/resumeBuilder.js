@@ -142,34 +142,38 @@ projects.display();
  var education = {
     "schools": [
         { "name": "University of Petroleum and energy studies",
-            "datesAttended": "2014 - 2018",
+            "dates": "2014 - 2018",
             "location": "Dehradun, uttarakhand, India",
             "degree": "B.Tech in Computer Science with specialization in Open source and Open standards",
-            "major": "Decaf Compiler",
-            "minor": "Traveling salesman problem using Ant colony Optimization",
+            "majors": "Decaf Compiler",
+            "minors": "Traveling salesman problem using Ant colony Optimization",
             "url": "www.upes.ac.in"
         }
     ],
    "onlineCourses": [
         { "school": "Udacity",
             "title": "Front-End Web Developer NanoDegree",
-            "completed": "Ongoing",
-            "url": "https://www.udacity.com/course/ud015"
+            "dates": "Ongoing",
+            "url": "https://www.udacity.com/course/ud015",
+            "location": "Dehradun,uttarakhand, India"
         },
         { "school": "Udacity",
             "title": "HTML5 Canvas",
-            "completed": "Ongoing",
-            "url": "https://www.udacity.com/course/ud292"
+            "dates": "Ongoing",
+            "url": "https://www.udacity.com/course/ud292",
+            "location": "Dehradun,uttarakhand, India"
         },
         { "school": "Udacity",
             "title": "Javascript Basics",
-            "completed": "March 2017",
-            "url": "https://www.udacity.com/course/ud804"
+            "dates": "March 2017",
+            "url": "https://www.udacity.com/course/ud804",
+            "location": "Dehradun,uttarakhand, India"
         },
         { "school": "Udacity",
             "title": "Intro to HTML and CSS",
-            "completed": "November 2016",
-            "url": "https://www.udacity.com/course/ud304"
+            "dates": "November 2016",
+            "url": "https://www.udacity.com/course/ud304",
+            "location": "Dehradun,uttarakhand, India"
         }],
 
     "display": function() {
@@ -194,6 +198,10 @@ projects.display();
 
             var myMajors = HTMLschoolMajor.replace('%data%', educations[edu].majors);
             $('.education-entry:last').append(myMajors);
+
+
+            var myMinors = HTMLschoolMinor.replace('%data%', educations[edu].minors);
+            $('.education-entry:last').append(myMinors);
         });
 
         // ONLINE COURSES
@@ -215,11 +223,15 @@ projects.display();
             var myUrl = HTMLonlineURL.replace("#", onlineEd[edu].url).replace('%data%', onlineEd[edu].url);
             $('.education-entry:last').append(myUrl);
 
+
         });
     }
 };
 education.display(); // DISPLAYING EDUCATION ON PAGE
 
-$("#mapDiv").append(googleMap);
+function displayMap() {
+    $('#mapDiv').append(googleMap);
+}
 
+displayMap();
 
