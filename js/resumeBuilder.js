@@ -9,7 +9,7 @@ var bio = {
         "mobile":"7060753767"
     },
     "bioPic": "images/me.jpg",
-    "welcomeMessage": "I'm currently persuing B.Tech from University of petroleum and energy studies, Dehradun. I am looking for Internship. "+
+    "welcomeMessage": "I'm currently persuing B.Tech from University of petroleum and energy studies, Dehradun. "+
               "I love web",
     "skills": ["JavaScript", "HTML", "python", "Software Development", "C and C++"],
 
